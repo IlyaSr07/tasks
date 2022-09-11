@@ -8,3 +8,6 @@ x = input('Жанр ')
 if x in h:
     h[g] = movie
 print(h)
+
+
+print('q')
