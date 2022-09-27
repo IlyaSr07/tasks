@@ -12,7 +12,9 @@
 
 class PasswordCheck():
     def __init__(self):
-        self.passwords = {}
+        self.weak = []
+        self.medium = []
+        self.strong = []
 
     def checkpassword(self, password):
         symbols = []
@@ -28,22 +30,24 @@ class PasswordCheck():
                 symcheck = symcheck + 1
             elif i_2 == 'Q' or i_2 == 'W' or i_2 == 'E' or i_2 == 'R' or i_2 == 'T' or i_2 == 'Y' or i_2 == 'U' or i_2 == 'I' or i_2 == 'O' or i_2 == 'P' or i_2 == 'A' or i_2 == 'S' or i_2 == 'D' or i_2 == 'F' or i_2 == 'G' or i_2 == 'H' or i_2 == 'J' or i_2 == 'K' or i_2 == 'L' or i_2 == 'Z' or i_2 == 'X' or i_2 == 'C' or i_2 == 'V' or i_2 == 'B' or i_2 == 'N' or i_2 == 'M':
                 casecheck = casecheck + 1
-        if numcheck < 2:
-            print('Not enough numbers')
-        elif symcheck < 2:
-            print('Not enough symbols')
-        elif casecheck < 2:
-            print('Not enough capital letters')
-        elif numcheck>=2 and symcheck>=2 and casecheck>=2:
-            if len(symbols) < 7:
+        if numcheck < 2 or symcheck < 2 or casecheck < 2 or len(symbols) < 7:
                 print('Weak password')
-                self.passwords[password] = 'weak'
+                self.weak.append(password)
             elif len(symbols) > 6 and len(symbols) < 12:
-                print('Medium password')
-                self.passwords[password] = 'medium'
+              print('Medium password')
+              self.medium.append(password)
             elif len(symbols) >= 12:
-                print('Strong password')
-                self.passwords[password] = 'strong'
+              print('Strong password')
+              self.strong.append(password)
 
     def show_all(self):
-        print(self.passwords)
+        print('weak:', self.weak)
+        print('medium:', self.medium)
+        print('strong:', self.strong)
+
+x = PasswordCheck()
+checkpassword('paj')
+checkpassword('fshdjfsdf')
+checkpassword('23JG!#fh')
+checkpassword('23JG!#fhdfjshgj')
+show_all()
