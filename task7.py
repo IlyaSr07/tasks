@@ -42,10 +42,13 @@ class PasswordCheck():
         print('strong:', self.strong)
 
     def register(self, name, password, age, home, work):
-        self.users[name] = password
-        self.ages[name] = age
-        self.homes[name] = home
-        self.works[name] = work
+        if name in self.users:
+            print('Username already exists')
+        else:
+            self.users[name] = password
+            self.ages[name] = age
+            self.homes[name] = home
+            self.works[name] = work
 
     def login(self):
         name = input('name ')
@@ -60,4 +63,6 @@ class PasswordCheck():
 
 x = PasswordCheck()
 x.register('John', 'qwerty', '23', 'china', 'fishing')
+print('john 1 registered')
+x.register('John', 'qwfsdfsdrty', '23234', 'chvscfsna', 'fishdsgsdging')
 x.login()
