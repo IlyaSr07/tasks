@@ -47,8 +47,10 @@ class PasswordCheck():
         self.homes[name] = home
         self.works[name] = work
 
-    def login(self, name, password):
+    def login(self):
+        name = input('name ')
         if name in self.users:
+            password = input('password ')
             if self.users[name] == password:
                 print(name, self.ages[name], self.homes[name], self.works[name])
             else:
@@ -58,4 +60,4 @@ class PasswordCheck():
 
 x = PasswordCheck()
 x.register('John', 'qwerty', '23', 'china', 'fishing')
-x.login('John', 'qwerty')
+x.login()
