@@ -1,17 +1,13 @@
-# программа прнимает от пользователь пароль,
-# и проверяет его сложность, пароль должен содержать в себе
-# минимум две цифры, два символа и две заглавные буквы
-# длина рекомендуемая должна быть не меньше 12 символов
-# программа проверяет сложность пароля по градации
-# от 1 до 6 символов - слабый
-# от 7 до 12 - средний
-# от 12 и более  -надежный
-# и схорняет введеные пароли
-# у программы будет функция show_all,  которая покажет весь список праолей
-# отсартированный от самого надежного до самого слабого
+# сделать функцию которая позволит выводить всю информацию о пользователе полсе того как будет введен корректный пароль
+# информация о пользователе ФИО возраст место проживания место работы
+# сделать функцию позволяющую создать пользователя
 
 class PasswordCheck():
     def __init__(self):
+        self.users = {}
+        self.ages = {}
+        self.homes = {}
+        self.works = {}
         self.weak = []
         self.medium = []
         self.strong = []
@@ -45,9 +41,21 @@ class PasswordCheck():
         print('medium:', self.medium)
         print('strong:', self.strong)
 
+    def register(self, name, password, age, home, work):
+        self.users[name] = password
+        self.ages[name] = age
+        self.homes[name] = home
+        self.works[name] = work
+
+    def login(self, name, password):
+        if name in self.users:
+            if self.users[name] == password:
+                print(name, self.ages[name], self.homes[name], self.works[name])
+            else:
+                print('Incorrect password')
+        else:
+            print('Username not found')
+
 x = PasswordCheck()
-x.checkpassword('paj')
-x.checkpassword('fshdjfsdf')
-x.checkpassword('23JG!#fh')
-x.checkpassword('23JG!#fhdfjshgj')
-x.show_all()
+x.register('John', 'qwerty', '23', 'china', 'fishing')
+x.login('John', 'qwerty')
