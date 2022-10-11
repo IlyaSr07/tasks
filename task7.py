@@ -2,12 +2,10 @@
 # информация о пользователе ФИО возраст место проживания место работы
 # сделать функцию позволяющую создать пользователя
 
-class PasswordCheck():
+class Userbase():
     def __init__(self):
         self.users = {}
-        self.ages = {}
-        self.homes = {}
-        self.works = {}
+        self.admin = {}
         self.weak = []
         self.medium = []
         self.strong = []
@@ -45,12 +43,21 @@ class PasswordCheck():
         if name in self.users:
             print('Username already exists')
         else:
-            self.users[name] = password
-            self.ages[name] = age
-            self.homes[name] = home
-            self.works[name] = work
+            self.users[name] = {'password': password, 'age': age, 'home': home, 'work': work}
 
     def login(self):
+        print(self.users)
+        name = input('name ')
+        if name in self.users:
+            password = input('password ')
+            if self.users[name] == password:
+                print(name, self.user[name])
+            else:
+                print('Incorrect password')
+        else:
+            print('Username not found')
+
+    def changeuser(self):
         name = input('name ')
         if name in self.users:
             password = input('password ')
@@ -61,8 +68,45 @@ class PasswordCheck():
         else:
             print('Username not found')
 
-x = PasswordCheck()
+class Admin(Userbase):
+
+    def __init__(self):
+        self.p = 0
+
+    def admin_register(self, name, password):
+        if name in self.users:
+            print('Username already exists')
+        else:
+            self.users[name] = password
+            self.admin[name] = 'yes'
+
+    def admin_login(self):
+        name = input('name ')
+        if name in self.users:
+            if self.admin[name] == 'no':
+                print('User is not an administrator')
+            else:
+                password = input('password ')
+                if self.users[name] == password:
+                    print('Logged in successfully')
+                else:
+                    print('Incorrect password')
+        else:
+            print('Username not found')
+
+    def deleteuser(self, name):
+        del self.users[name]
+        del self.admin[name]
+        print('User deleted sucessfully')
+
+    def edituser(self, name, change, value):
+        if change == 'password':
+            self.users[name] = value
+        if change == 'name':
+            self.users
+        elif change != 'name' and change != 'ages' and change != 'homes' and change != 'works':
+            print('Attribute does not exist')
+
+x = Userbase()
 x.register('John', 'qwerty', '23', 'china', 'fishing')
-print('john 1 registered')
-x.register('John', 'qwfsdfsdrty', '23234', 'chvscfsna', 'fishdsgsdging')
 x.login()
