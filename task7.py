@@ -46,12 +46,11 @@ class Userbase():
             self.users[name] = {'password': password, 'age': age, 'home': home, 'work': work}
 
     def login(self):
-        print(self.users)
         name = input('name ')
         if name in self.users:
             password = input('password ')
-            if self.users[name] == password:
-                print(name, self.user[name])
+            if self.users[name]['password'] == password:
+                print(name, self.users[name])
             else:
                 print('Incorrect password')
         else:
