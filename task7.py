@@ -39,11 +39,28 @@ class Userbase():
         print('medium:', self.medium)
         print('strong:', self.strong)
 
-    def register(self, name, password, age, home, work):
-        if name in self.users:
-            print('Username already exists')
+    def register(self, age, home, work):
+        name = input('name ')
+        if len(name) < 2:
+            print('Name too short')
+        elif len(name) == 0:
+            print('Please enter name')
+        elif len(name) > 20:
+            print('Name too long')
         else:
-            self.users[name] = {'password': password, 'age': age, 'home': home, 'work': work}
+            if name in self.users:
+                print('Username already exists')
+            else:
+                password = input('password ')
+                if len(password) < 2:
+                    print('Password too short')
+                elif len(password) == 0:
+                    print('Please enter password')
+                elif len(password) > 30:
+                    print('Password too long')
+                else:
+                    self.checkpassword(password)
+                    self.users[name] = {'password': password, 'age': age, 'home': home, 'work': work}
 
     def login(self):
         name = input('name ')
@@ -107,5 +124,5 @@ class Admin(Userbase):
             print('Attribute does not exist')
 
 x = Userbase()
-x.register('John', 'qwerty', '23', 'china', 'fishing')
+x.register('23', 'china', 'fishing')
 x.login()
